@@ -49,7 +49,7 @@ create table Measurements
 	ID int primary key auto_increment,
     MachineID INT references ProductionMachine(ID),
     measuredValue float not null,
-    unitOfMeasure varchar(10) not null check(unitOfMeasure = 'Kwh' or unitOfMeasure = 'm3' or unitOfMessure = 'piece'),
+    unitOfMeasure varchar(10) not null check(unitOfMeasure = 'Kwh' or unitOfMeasure = 'm3' or unitOfMeasure = 'piece'),
     dateOfMeasure date not null 
 );
 /*
