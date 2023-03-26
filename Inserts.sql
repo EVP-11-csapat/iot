@@ -114,30 +114,30 @@ DELIMITER //
 CREATE PROCEDURE FillWithRandomData(_from date, _till date)
 BEGIN
 	DECLARE  counter INT;
-	DECLARE  currentRandNumber INT;
+	DECLARE  currentRandomNumber FLOAT;
 	DECLARE  currentDate DATE;
     DECLARE i INT;
-    
-    SET currentDate = _from;
-    SET counter =0;
+    SET i =1;
     
     test1:
-    while currentDate <= _till DO
+    while i<=30 DO
 		UPDATE Factory
 			SET waterConsumption = waterConsumption+rand()*100
 		WHERE Factory.ID=1;
-		SET i =1;
+		SET currentDate = _from;
+		SET currentRandomNumber = 0;
         test2:
-        WHILE i<=30 DO
-			CALL insertMeasurement(i,rand()*100,'Kwh',currentDate);
+        WHILE currentDate <= _till DO
+			SET currentRandomNumber = currentRandomNumber + rand()*100;
+			CALL insertMeasurement(i,currentRandomNumber,'Kwh',currentDate);
             IF 0<(SELECT COUNT(ID) FROM ProductionMachine WHERE ProductionMachine.ID IN (i)) THEN
-				CALL insertMeasurement(i,rand()*100,'piece',currentDate);
+				CALL insertMeasurement(i,floor(currentRandomNumber),'piece',currentDate);
 			ELSEIF 0<(SELECT COUNT(ID) FROM Compressor WHERE Compressor.ID IN (i)) THEN
-				CALL insertMeasurement(i,rand()*100,'m3',currentDate);
+				CALL insertMeasurement(i,currentRandomNumber,'m3',currentDate);
 		END IF;
-            SET i = i +1;
+            SET currentDate = currentDate +1;
 		END WHILE test2;
-        SET currentDate= currentDate +1;
+        SET i= i +1;
 	END WHILE test1;
 END; //
 DELIMITER ;
@@ -161,3 +161,9 @@ group by Absorbent.ID;
 
 select * from Measurement;
 select * from stateOfFormwork;
+
+
+
+
+
+
