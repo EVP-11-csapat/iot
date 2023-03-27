@@ -115,6 +115,7 @@ CREATE PROCEDURE FillWithRandomData(_from date, _till date)
 BEGIN
 	DECLARE  counter INT;
 	DECLARE  currentRandomNumber FLOAT;
+    DECLARE  prevRandomNumber FLOAT;
 	DECLARE  currentDate DATE;
     DECLARE i INT;
     SET i =1;
@@ -128,10 +129,16 @@ BEGIN
 		SET currentRandomNumber = 0;
         test2:
         WHILE currentDate <= _till DO
-			SET currentRandomNumber = currentRandomNumber + rand()*100;
+			SET prevRandomNumber = currentRandomNumber;
+			SET currentRandomNumber = currentRandomNumber + (Floor(rand()*10)*10);
 			CALL insertMeasurement(i,currentRandomNumber,'Kwh',currentDate);
             IF 0<(SELECT COUNT(ID) FROM ProductionMachine WHERE ProductionMachine.ID IN (i)) THEN
 				CALL insertMeasurement(i,floor(currentRandomNumber),'piece',currentDate);
+                IF(currentRandomNumber = prevRandomNumber) THEN
+					CALL insertStateOfFormwork(i,0,currentDate);
+                ELSE
+					CALL insertStateOfFormwork(i,1,currentDate);
+                END IF;
 			ELSEIF 0<(SELECT COUNT(ID) FROM Compressor WHERE Compressor.ID IN (i)) THEN
 				CALL insertMeasurement(i,currentRandomNumber,'m3',currentDate);
 		END IF;
