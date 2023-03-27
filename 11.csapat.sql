@@ -70,10 +70,10 @@ END //
 DELIMITER ;
 
 DELIMITER //
-create procedure insertStateOfFormworkinsertStateOfFormwork(IN _MachineID int, IN _isOpen int )
+create procedure insertStateOfFormwork( PMachineID int, _isOpen int, _date date)
 BEGIN
-	insert into factorysummary.stateOfFormwork(MachineID, isOpen)
-    values(_MachineID, isOpen);
+	insert into factorysummary.stateOfFormwork(ProductionMachineID, isOpen,dateOfState)
+    values(PMachineID, _isOpen,_date);
 END //   
 DELIMITER;
 
@@ -87,7 +87,6 @@ BEGIN
     DECLARE c FLOAT;
     DECLARE openFromworks INT;
     DECLARE absorbentID INT;
-    /*
     select measuredValue into  a from Measurement
 	join Machine m1 on Measurement.MachineID = m1.ID
 	join ProductionMachine pm1 on m1.ID = pm1.ID
@@ -97,9 +96,7 @@ BEGIN
 	join Machine m2 on Measurement.MachineID = m2.ID
 	join ProductionMachine pm2 on m2.ID = pm2.ID
     Where pm2.ID = _ProductionMachineID and Measurement.dateOfMeasure = _from;
-    */
     /*Itt átterhelyük az elszívő fogyasztását a gépre*/
-    /*
     select ID into absorbentID from Machine 
 	join Absorbent ab1 on Machine.ID = ab1.ID
 	join ProductionMachine  pm3 on ab1.ID = pm3.AbsorbentID
@@ -117,7 +114,6 @@ BEGIN
     Where m3.ID =  absorbentID;
     
     RETURN ( b - a + c ); 
-	*/
     RETURN (1);
 END; //
 DELIMITER;
