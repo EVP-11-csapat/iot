@@ -98,12 +98,12 @@ BEGIN
 	join ProductionMachine pm2 on m2.ID = pm2.ID
     Where pm2.ID = _ProductionMachineID and Measurement.dateOfMeasure = _from and Measurement.unitOfMeasure = 'Kwh';
     /*Itt átterhelyük az elszívő fogyasztását a gépre*/
-    select ID into absorbentID from Machine 
+    select Machine.ID into absorbentID from Machine 
 	join Absorbent ab1 on Machine.ID = ab1.ID
 	join ProductionMachine  pm3 on ab1.ID = pm3.AbsorbentID
 	where _ProductionMachine = pm3.ID;
     
-    select count(ID) into  openFromworks from ProductionMachine
+    select count(ProductionMachine.ID) into  openFromworks from ProductionMachine
 	join Absorbent ab2 on Machine.ID = ab2.ID
 	join ProductionMachine pm4 on ab2.ID = pm4.AbsorbentID
 	join stateOfFormwork on stateOfFormwork.ProductionMachineID = pm4.ID
