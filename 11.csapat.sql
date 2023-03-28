@@ -64,7 +64,7 @@ create table Measurement
 DELIMITER //
 create procedure insertMeasurement (_MachineID int,val float,unit varchar(10),_date date)
 BEGIN
-	insert into factorysummary.Measurement (MachineID, measuredValue, unitOfMeasure, dateOfMeasure)
+	insert into Factorysummary.Measurement (MachineID, measuredValue, unitOfMeasure, dateOfMeasure)
 	values (_MachineID, val, unit, _date);
 END //
 DELIMITER ;
