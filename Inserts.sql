@@ -149,6 +149,4 @@ BEGIN
 END; //
 DELIMITER ;
 
-
-
-
+CALL FillWithRandomData('2014-01-01','2014-01-04');
