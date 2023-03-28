@@ -72,7 +72,7 @@ DELIMITER ;
 DELIMITER //
 create procedure insertStateOfFormwork( PMachineID int, _isOpen int, _date date)
 BEGIN
-	insert into factorysummary.stateOfFormwork(ProductionMachineID, isOpen,dateOfState)
+	insert into FactorySummary.stateOfFormwork(ProductionMachineID, isOpen,dateOfState)
     values(PMachineID, _isOpen,_date);
 END //   
 DELIMITER ;
