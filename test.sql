@@ -26,7 +26,7 @@
     select Machine.ID into @absorbentID from Machine 
 	join Absorbent ab1 on Machine.ID = ab1.ID
 	join ProductionMachine  pm3 on ab1.ID = pm3.AbsorbentID
-	where _ProductionMachineID = pm3.ID;
+	where @_ProductionMachineID = pm3.ID;
     
     SELECT @absorbentID;
     
@@ -45,12 +45,14 @@
     
     SELECT @c;
     
-    SET @result = @b - @a;
+    SET @result = @a - @b;
+    
+    DELIMITER //
     
     IF @openFromworks > 0
     THEN
     SET @result = @result + (@c / @openFromworks);
-    END IF;
+    END IF; //
     
-   
+   	DELIMITER ;
     SELECT @result; 
