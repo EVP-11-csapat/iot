@@ -104,7 +104,7 @@ BEGIN
 	where _ProductionMachineID = pm3.ID;
     
     select count(ProductionMachine.ID) into  openFromworks from ProductionMachine
-	join Absorbent ab2 on Machine.ID = ab2.ID
+	join Absorbent ab2 on ProductionMachine.ID = ab2.ID
 	join ProductionMachine pm4 on ab2.ID = pm4.AbsorbentID
 	join stateOfFormwork on stateOfFormwork.ProductionMachineID = pm4.ID
     where stateOfFormwork.isOpen = 1 and ab2.ID =  absorbentID and stateOfFormwork.dateOfState = _till;
