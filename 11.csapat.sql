@@ -75,7 +75,7 @@ BEGIN
 	insert into factorysummary.stateOfFormwork(ProductionMachineID, isOpen,dateOfState)
     values(PMachineID, _isOpen,_date);
 END //   
-DELIMITER;
+DELIMITER ;
 
 /*Termelő gépek fogyasztását számolja ki egy adott időintervallumon*/
 DELIMITER //
@@ -113,9 +113,9 @@ BEGIN
 	join ProductionMachine pm5 on m3.ID = pm5.ID
     Where m3.ID =  absorbentID;
     
-    RETURN ( b - a + c ); 
+    RETURN ( b - a + (c / openFromworks) ); 
     RETURN (1);
 END; //
-DELIMITER;
+DELIMITER ;
 
 
