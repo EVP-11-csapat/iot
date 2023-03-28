@@ -85,6 +85,7 @@ BEGIN
 	DECLARE a FLOAT;
     DECLARE b FLOAT;
     DECLARE c FLOAT;
+    DECLARE result FLOAT;
     DECLARE openFromworks INT;
     DECLARE absorbentID INT;
     select measuredValue into  a from Measurement
@@ -113,8 +114,10 @@ BEGIN
 	join ProductionMachine pm5 on m3.ID = pm5.ID
     Where m3.ID =  absorbentID;
     
-    RETURN ( b - a + (c / openFromworks) ); 
+    
+    SET result = (b - a + (c / openFromworks));
+    
+   
+    RETURN result; 
 END; //
 DELIMITER ;
-
-
