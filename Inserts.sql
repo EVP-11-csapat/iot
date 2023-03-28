@@ -35,7 +35,7 @@ DELIMITER ;
 
 select insertMachines();
 
-SELECT * from machine;
+SELECT * from Machine;
 
 /*Section 1*/
 insert into Absorbent(ID)
