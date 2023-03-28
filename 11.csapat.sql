@@ -114,7 +114,7 @@ BEGIN
 	join ProductionMachine pm5 on m3.ID = pm5.ID
     Where m3.ID =  absorbentID;
     
-  SET @result = a - b;
+  SET result = a - b;
     
     IF @openFromworks > 0
     THEN
