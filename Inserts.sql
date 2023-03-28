@@ -149,27 +149,6 @@ BEGIN
 END; //
 DELIMITER ;
 
-CALL FillWithRandomData('2014-01-01','2014-01-04');
-/*Test*/
-select calculateConsumption('2014-01-01','2014-01-02',3);
-select calculateConsumption('2014-01-03','2014-01-04',3);
-select calculateConsumption('2014-01-01','2014-01-04',3);
-
-
-select * from ProductionMachine;
-select * from Absorbent;
-select * from Compressor;
-select * from Factory ;
-select * from Section;
-
-select count(ProductionMachine.ID), Absorbent.ID from ProductionMachine
-join Absorbent on Absorbent.ID = ProductionMachine.AbsorbentID
-group by Absorbent.ID;
-
-select * from Measurement;
-select * from stateOfFormwork;
-
-
 
 
 
