@@ -107,7 +107,7 @@ BEGIN
 	join Absorbent ab2 on Machine.ID = ab2.ID
 	join ProductionMachine pm4 on ab2.ID = pm4.AbsorbentID
 	join stateOfFormwork on stateOfFormwork.ProductionMachineID = pm4.ID
-    where stateOfFormwork.isOpen = 1 and ab2.ID =  absorbentID and stateOfFormwork.dateOfState = _date;
+    where stateOfFormwork.isOpen = 1 and ab2.ID =  absorbentID and stateOfFormwork.dateOfState = _till;
     
     select measuredValue into  c from Measurement
 	join Machine m3 on Measurement.MachineID = m3.ID
