@@ -157,10 +157,10 @@ select calculateConsumption('2014-01-01','2014-01-04',3);
 
 
 select * from ProductionMachine;
-select * from absorbent;
-select * from compressor;
-select * from factory ;
-select * from section;
+select * from Absorbent;
+select * from Compressor;
+select * from Factory ;
+select * from Section;
 
 select count(ProductionMachine.ID), Absorbent.ID from ProductionMachine
 join Absorbent on Absorbent.ID = ProductionMachine.AbsorbentID
@@ -168,7 +168,6 @@ group by Absorbent.ID;
 
 select * from Measurement;
 select * from stateOfFormwork;
-
 
 
 
