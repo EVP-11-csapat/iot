@@ -114,7 +114,6 @@ BEGIN
     Where m3.ID =  absorbentID;
     
     RETURN ( b - a + (c / openFromworks) ); 
-    RETURN (1);
 END; //
 DELIMITER ;
 
